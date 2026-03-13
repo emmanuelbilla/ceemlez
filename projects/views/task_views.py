@@ -1,0 +1,23 @@
+from django.shortcuts import render
+
+# Create your views here.
+from rest_framework import generics
+from projects.models.task import Task
+from projects.serializers.taskserializer import TaskSerializer
+#from rest_framework.permissions import IsAuthenticatedOrReadOnly
+#from core.permissions import IsOwnerOrReadOnly
+
+# List and Create Tasks
+class TaskListCreateView(generics.ListCreateAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    #permission_classes = [IsAuthenticatedOrReadOnly] # Allow read-only access for unauthenticated users
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user) # Set the owner to the logged-in user
+
+# Retrieve, Update, and Delete a Task
+class TaskDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer
+    #permission_classes = [IsOwnerOrReadOnly] # Allows only owners to edit or delete

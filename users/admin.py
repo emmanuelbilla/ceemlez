@@ -1,14 +1,8 @@
 from django.contrib import admin
-from users.models.user import User
-from users.models.userassignment import UserAssignment
+from .models.new_user import User
 
 # Register your models here.
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'email', 'role')
-    search_fields = ('name', 'email', 'role')
-
-@admin.register(UserAssignment)
-class UserAssignmentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'task')
-    search_fields = ('user__username', 'task__title')
+    list_display = ('id', 'username', 'email', 'first_name', 'last_name', 'created_at', 'updated_at')
+    search_fields = ('username', 'email', 'first_name', 'last_name')

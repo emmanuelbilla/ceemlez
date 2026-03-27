@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework import generics
-from users.models.user import User
+from users.models.new_user import User
 from users.serializers.usersserializer import UserSerializer
 
 

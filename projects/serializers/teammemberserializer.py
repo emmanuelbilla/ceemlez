@@ -1,21 +1,21 @@
 from rest_framework import serializers
-from users.models.userassignment import UserAssignment
+from projects.models.team_member import TeamMember
 
 
-# Serializer for UserAssignment model
-class UserAssignmentSerializer(serializers.ModelSerializer):
+# Serializer for TeamMember model
+class TeamMemberSerializer(serializers.ModelSerializer):
     owner = serializers.HiddenField(
         default=serializers.CurrentUserDefault()
     )  # Automatically set the owner to the logged-in user
 
     class Meta:
-        model = UserAssignment
+        model = TeamMember
         fields = '__all__'  # Include all fields of the model
     
 def validate(self, data):
-    if UserAssignment.objects.filter(
+    if TeamMember.objects.filter(
         user=data['user'],
-        task=data['task']
+        task=data['project']
     ).exists():
-        raise serializers.ValidationError("This user is already assigned to this task.")
+        raise serializers.ValidationError("This user is already added to this project.")
     return data

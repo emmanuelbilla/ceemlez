@@ -2,16 +2,16 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework import generics
-from users.models.new_user import User
-from users.serializers.usersserializer import UserSerializer
+from users.models.new_user import NewUser
+from users.serializers.usersserializer import NewUserSerializer
 
 
 # List and Create Users
-class UserListCreateView(generics.ListCreateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+class NewUserListCreateView(generics.ListCreateAPIView):
+    queryset = NewUser.objects.all()
+    serializer_class = NewUserSerializer
 
 # Retrieve, Update, and Delete a User
-class UserDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+class NewUserDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = NewUser.objects.all()
+    serializer_class = NewUserSerializer

@@ -1,5 +1,5 @@
 from django.db import models
-from users.models.new_user import User
+from users.models.new_user import NewUser as User
 from projects.models.project import Project
 
 # Create your models here.

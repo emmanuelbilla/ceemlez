@@ -1,10 +1,10 @@
 from django.urls import path
-from users.views.users_views import UserListCreateView, UserDetailView
+from users.views.users_views import NewUserListCreateView, NewUserDetailView
 
 
 app_name = 'users'
 
 urlpatterns = [
-    path('', UserListCreateView.as_view(), name='user-list-create'),
-    path('<int:pk>/', UserDetailView.as_view(), name='user-detail'),
+    path('', NewUserListCreateView.as_view(), name='user-list-create'),
+    path('<int:pk>/', NewUserDetailView.as_view(), name='user-detail'),
 ]

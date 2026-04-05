@@ -1,5 +1,4 @@
 from django.db import models
-#from ceemlez.users.models.new_user import User
 from projects.models.team_member import TeamMember
 from projects.models.task import Task
 from projects.models.project import Project
